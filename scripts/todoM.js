@@ -2,15 +2,15 @@
 
 
 const apiUrlNames = "http://localhost:8083/api/users";
-const userNameDropdown = document.getElementById("userNameDropdown");
+const userNameDropdownDiv = document.getElementById("userNameDropdownDiv");
 
-const addBtn = document.getElementById("addbtn");
+const addBtn = document.getElementById("addBtn");
 
 window.onload = () => {
     getUserNameDropdown();
-    addBtn.onclick = onAddBtn;
-
+    addBtn.onclick = onAddBtnClicked;
 }
+
 
 function getUserNameDropdown() {
     // Fetch data from API
@@ -19,6 +19,7 @@ function getUserNameDropdown() {
         .then(data => {
             
             const select = document.createElement('select');
+            select.id = "userNameDropdown";
 
 
             select.className = "form form-control container mb-4 w-25"
@@ -44,7 +45,8 @@ function getUserNameDropdown() {
             });
 
             
-            userNameDropdown.appendChild(select); 
+            userNameDropdownDiv.appendChild(select); 
+            return userNameDropdown;
         })
         .catch(error => {
             console.error('Error fetching users:', error);
@@ -52,15 +54,19 @@ function getUserNameDropdown() {
 
 }
 
-function onAddBtn(){
+function onAddBtnClicked(){
+    // console.log(userNameDropdown.value)
+    let categoryDropdown = document.getElementById("categoryDropdown");
+    console.log(categoryDropdown.value)
+    let textArea = document.getElementById("textArea");
+    let inputDate = document.getElementById("inputDate");
+    let priorityDropdown = document.getElementById("priorityDropdown");
     let bodyData = {
-        userid: document.getElementById("userNameDropdown").value ,
-        // category: document.getElementById("categoryDropdown").value ,
-        description: document.getElementById("textArea").value ,
-        deadline: document.getElementById("inputDate").value ,
-        priority: document.getElementById("priorityDropdown").value ,
-
-
+        userid: userNameDropdown.value ,
+        category: categoryDropdown.value ,
+        description: textArea.value ,
+        deadline: inputDate.value ,
+        priority: priorityDropdown.value
     }
 
     fetch("http://localhost:8083/api/todos", {
@@ -71,9 +77,16 @@ function onAddBtn(){
     })
     .then(response => response.json())
     .then(json => {
-        let confirmationMessage =
-        document.getElementById("confirmationMessage");
-        confirmationMessage.innerHTML = "New To Do Added";
+        let messagePara =
+        document.getElementById("messagePara");
+        messagePara.className = "container text-center text-success"
+        messagePara.innerHTML = "***New To Do Added***";
+        userNameDropdown.value = '';
+        categoryDropdown.selectedIndex = 0;
+        textArea.value = '';
+        inputDate.value = '';
+        priorityDropdown.selectedIndex = 0;
+        // console.log(json);
     })
     .catch(error => {
         console.error('Error adding To Do:', error);
