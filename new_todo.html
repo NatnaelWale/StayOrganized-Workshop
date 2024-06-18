@@ -27,13 +27,6 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Impact
-  * Template URL: https://bootstrapmade.com/impact-bootstrap-business-website-template/
-  * Updated: Jun 14 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body class="starter-page-page">
@@ -114,7 +107,17 @@
       <div class="container section-title" data-aos="fade-up">
         <h2>New ToDo Section</h2>
       </div><!-- End Section Title -->
-
+      <!-- Category Dropdown -->
+      <select id="categoryDropdown">
+        <option value="category">Select a category</option>
+    </select>
+    
+    <!-- Priority Dropdown -->
+    <select id="priorityDropdown">
+      <option value="priority">High</option>
+      <option value="priority">Medium</option>
+      <option value="priority">Low</option>
+    </select>
     </section><!-- /Starter Section Section -->
     <form class="container">
 
@@ -208,6 +211,7 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+
   <script src="assets/js/todoM.js"></script>
 
 </body>
