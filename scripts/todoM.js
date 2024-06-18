@@ -3,11 +3,13 @@
 
 const apiUrlNames = "http://localhost:8083/api/users";
 const userNameDropdown = document.getElementById("userNameDropdown");
+
 const addBtn = document.getElementById("addbtn");
 
 window.onload = () => {
     getUserNameDropdown();
     addBtn.onclick = onAddBtn;
+
 }
 
 function getUserNameDropdown() {
@@ -18,7 +20,11 @@ function getUserNameDropdown() {
             
             const select = document.createElement('select');
 
-            select.classList.add('form-control','mb-4');
+
+            select.className = "form form-control container mb-4 w-25"
+
+
+       
 
 
             // Create default option
@@ -43,7 +49,6 @@ function getUserNameDropdown() {
         .catch(error => {
             console.error('Error fetching users:', error);
         });
-
 
 }
 
