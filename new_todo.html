@@ -114,12 +114,12 @@
                 <h2>New ToDo Section</h2>
             </div>
             <!-- End Section Title -->
-              <div id="userNameDropdown">
+              <div id="userNameDropdownDiv">
               </div>
       
             <!-- Category Dropdown --> 
             <select id="categoryDropdown" class="container form form-control w-25 mb-4">
-                <option value="category">Select a category</option>
+                <option>Select a category</option>
             </select>
 
             <!-- Priority Dropdown -->
@@ -129,13 +129,27 @@
                 <option value="priority">Medium</option>
                 <option value="priority">Low</option>
             </select>
+
+            <div class= "container form form-control w-25 mt-4" >
+                <label class="form-label">Deadline:</label>
+                <input id="inputDate" type="text" placeholder="YYYY-MM-DD" class="form-control">
+            </div>
         
-        <form class="container">
             <div data-mdb-input-init class="container form-outline mb-4 w-50">
                 <label class="form-label" for="textArea">Description : </label>
                 <textarea class="form-control" id="textArea" rows="4"></textarea>
             </div>
-        </form>
+
+            <div class="container text-center mb-4">
+                <button id="addBtn" type="button" class="btn btn-secondary mt-4">ADD TO DO</button>
+            </div>
+            
+            <div>
+                <p id="messagePara"></p>
+            </div>
+
+            
+        
     </main>
 
     <footer id="footer" class="footer">
