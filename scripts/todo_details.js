@@ -7,9 +7,16 @@ let todoId;
 const resultsDiv = document.getElementById("resultsDiv");
 resultsDiv.className  = "container"
 
+const taskCompletion = document.getElementById("taskCompletion");
+const completedBtn = document.getElementById("completedBtn");
+const messageBox = document.getElementById("messageBox");
+messageBox.className = "container mt-3 text-success"
+
+
 window.onload = () => {
     getToDoFromUrl();
     loadToDoData();
+    completedBtn.onclick = putCompletedToApi;
 };
 
 function getToDoFromUrl() {
@@ -40,6 +47,11 @@ function fetchToDoData(apiUrl) {
       if (selectedtodo.id == todoId) {
         displayToDoDetails(selectedtodo);
         console.log(selectedtodo)
+        if(selectedtodo.completed == false){
+          taskCompletion.className = "d-block container";
+        } else {
+          taskCompletion.className = "d-none";
+        }
       }
     }
   }
@@ -60,4 +72,28 @@ function fetchToDoData(apiUrl) {
     let element = document.createElement("h5");
     element.innerHTML = `${label}: ${value}`;
     return element;
+  }
+
+  function putCompletedToApi(){
+    completedBtn.className = "d-none"
+    
+
+    let bodyData = {
+      completed: true
+    }
+
+    fetch(`http://localhost:8083/api/todos/${todoId}`, {
+      method: "PUT",
+      body: JSON.stringify(bodyData),
+      headers: {"Content-type":
+        "application/json; charset=UTF-8"}
+    })
+    .then(response => response.json())
+    .then(json => {
+      messageBox.innerHTML = "***Marked as complete***"
+      // console.log(json)
+    })
+    .catch(err => {
+      messageBox.innerHTML = "Unexpected Error"
+    })
   }
