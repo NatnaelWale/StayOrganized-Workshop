@@ -1,5 +1,6 @@
 "use strict";
 
+
 const apiUrlNames = "http://localhost:8083/api/users";
 const userNameDropdown = document.getElementById("userNameDropdown");
 
@@ -14,12 +15,13 @@ function getUserNameDropdown() {
         .then(data => {
             
             const select = document.createElement('select');
+            select.classList.add('form-control','mb-4');
 
             // Create default option
             const defaultOption = document.createElement('option');
             defaultOption.textContent = 'Select a user';
             defaultOption.value = '';
-            select.appendChild(defaultOption);
+            select.appendChild(defaultOption)
 
             // Populate dropdown with names 
             data.forEach(user => {
