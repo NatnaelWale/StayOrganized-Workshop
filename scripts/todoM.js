@@ -15,6 +15,7 @@ function getUserNameDropdown() {
         .then(data => {
             
             const select = document.createElement('select');
+            select.className = "form form-control container mb-4 w-25"
 
             select.classList.add('form-control','mb-4');
 
